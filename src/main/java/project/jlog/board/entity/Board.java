@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -26,6 +27,7 @@ public class Board {
     @Column(name = "content")
     private String content;
 
+    @CreationTimestamp //시간 자동 저장
     @Column(name = "create_date")
     private LocalDateTime date;
 }

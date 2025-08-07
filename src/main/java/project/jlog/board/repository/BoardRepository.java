@@ -6,4 +6,5 @@ import project.jlog.board.entity.Board;
 
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
+    Long boardId(Long boardId);
 }

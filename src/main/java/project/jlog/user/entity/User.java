@@ -1,13 +1,11 @@
 package project.jlog.user.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import project.jlog.user.enumPackage.UserRole;
 
 @Getter
 @NoArgsConstructor
@@ -25,4 +23,8 @@ public class User {
 
     @Column(name = "email", unique = true)
     private String email;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_role", nullable = false)
+    private UserRole userRole;
 }

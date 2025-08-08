@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 public class User {
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user_id", unique = true)
     private String userId;
 
     @Column(name = "password")

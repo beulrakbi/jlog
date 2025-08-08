@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import project.jlog.user.dto.UserRequestDTO;
 import project.jlog.user.entity.User;
+import project.jlog.user.enumPackage.UserRole;
 import project.jlog.user.repository.UserRepository;
 
 @Service
@@ -28,6 +29,7 @@ public class UserService {
                 .userId(userId)
                 .password(passwordEncoder.encode(password))
                 .email(email)
+                .userRole(UserRole.USER)
                 .build();
         return userRepository.save(user);
     }

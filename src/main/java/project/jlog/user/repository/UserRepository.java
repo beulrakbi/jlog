@@ -4,4 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import project.jlog.user.entity.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
+    //아이디 중복 체크
+    boolean existsByUserId(String userId);
+
+    //이메일 중복 체크
+    boolean existsByEmail(String email);
 }

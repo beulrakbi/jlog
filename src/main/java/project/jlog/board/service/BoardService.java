@@ -1,15 +1,11 @@
 package project.jlog.board.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import project.jlog.DataNotFoundException;
+import project.jlog.exception.DataNotFoundException;
 import project.jlog.board.entity.Board;
 import project.jlog.board.repository.BoardRepository;
 
-import javax.swing.border.Border;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

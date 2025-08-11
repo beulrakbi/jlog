@@ -33,7 +33,8 @@ public class Board {
     private LocalDateTime date;
 
     @ManyToOne
-    private User userId;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     private LocalDateTime modifyDate; //수정 날짜 추가
 }

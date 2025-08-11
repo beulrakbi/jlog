@@ -34,7 +34,7 @@ public class BoardController {
         if(bindingResult.hasErrors()){
             return "posting";
         }
-        this.boardService.boardCreate(boardRequestDTO.getSubject(), boardRequestDTO.getContent(), boardRequestDTO.getUserId());
+        this.boardService.boardCreate(boardRequestDTO.getSubject(), boardRequestDTO.getContent(), user);
         return "redirect:/";
     }
     /* 등록 컨트롤러 종료 */

@@ -19,7 +19,9 @@
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">MyHome</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/board/posting}">Posting</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/user/join}">Sign Up</a></li>
+                    <li class="nav-item" sec:authorize="isAnonymous()">
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/user/join}">Sign Up</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link px-lg-3 py-3 py-lg-4" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
                         <a class="nav-link px-lg-3 py-3 py-lg-4" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">Logout</a>

@@ -4,10 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import project.jlog.exception.DataNotFoundException;
 import project.jlog.user.dto.UserRequestDTO;
 import project.jlog.user.entity.User;
 import project.jlog.user.enumPackage.UserRole;
 import project.jlog.user.repository.UserRepository;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,4 +37,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User getUser(String userId){
+        Optional<User> user = this.userRepository.findById(userId);
+        if(user.isPresent()){
+            return user.get();
+        }else {
+            throw new DataNotFoundException("user not found");
+        }
+    }
 }

@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import project.jlog.board.dto.BoardRequestDTO;
 import project.jlog.board.entity.Board;
 import project.jlog.board.service.BoardService;
+import project.jlog.user.entity.User;
+import project.jlog.user.service.UserService;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -17,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
+    private final UserService userService;
 
     /* 등록 컨트롤러 시작*/
     @GetMapping("/posting")
@@ -25,11 +29,12 @@ public class BoardController {
     }
     /* @Valid : notblank나 size 어노테이션을 적용시키기 위해 제약조건을 검사하는 것 */
     @PostMapping("/posting")
-    public String boardCreate(@Valid BoardRequestDTO boardRequestDTO, BindingResult bindingResult){
+    public String boardCreate(@Valid BoardRequestDTO boardRequestDTO, BindingResult bindingResult, Principal principal){
+        User user = userService.getUser(principal.getName());
         if(bindingResult.hasErrors()){
             return "posting";
         }
-        this.boardService.boardCreate(boardRequestDTO.getSubject(), boardRequestDTO.getContent());
+        this.boardService.boardCreate(boardRequestDTO.getSubject(), boardRequestDTO.getContent(), boardRequestDTO.getUserId());
         return "redirect:/";
     }
     /* 등록 컨트롤러 종료 */

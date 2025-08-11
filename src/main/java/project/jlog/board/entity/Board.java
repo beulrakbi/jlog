@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import project.jlog.user.entity.User;
+
 import java.time.LocalDateTime;
 
 @Getter
@@ -19,13 +21,19 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //인조식별자 자동 증가로 중복 제거
     @Column(name = "board_id")
     private Long boardId;
+
     @Column(name = "subject")
     private String subject;
+
     @Column(name = "content")
     private String content;
+
     @CreationTimestamp //시간 자동 저장
     @Column(name = "create_date")
     private LocalDateTime date;
+
+    @ManyToOne
+    private User userId;
 
     private LocalDateTime modifyDate; //수정 날짜 추가
 }

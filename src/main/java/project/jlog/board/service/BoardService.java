@@ -16,11 +16,11 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     // 게시글 등록
-    public Board boardCreate(String subject, String content, User user){ //빌더 사용시 Board 객체를 반환해야 함
+    public Board boardCreate(String subject, String content, User userId){ //빌더 사용시 Board 객체를 반환해야 함
         Board board = Board.builder()
                 .subject(subject)
                 .content(content)
-                .userId(user)
+                .user(userId)
                 .build();
         return boardRepository.save(board);
     }

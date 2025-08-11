@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import project.jlog.user.entity.User;
 
 import java.time.LocalDateTime;
 
@@ -17,4 +18,5 @@ public class BoardRequestDTO {
     @NotBlank(message = "내용은 필수 항목입니다.")
     private String content;
     private LocalDateTime date;
+    private User userId;
 }

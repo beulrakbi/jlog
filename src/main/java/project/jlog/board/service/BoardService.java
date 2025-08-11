@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import project.jlog.exception.DataNotFoundException;
 import project.jlog.board.entity.Board;
 import project.jlog.board.repository.BoardRepository;
+import project.jlog.user.entity.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,10 +16,11 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     // 게시글 등록
-    public Board boardCreate(String subject, String content){ //빌더 사용시 Board 객체를 반환해야 함
+    public Board boardCreate(String subject, String content, User user){ //빌더 사용시 Board 객체를 반환해야 함
         Board board = Board.builder()
                 .subject(subject)
                 .content(content)
+                .userId(user)
                 .build();
         return boardRepository.save(board);
     }

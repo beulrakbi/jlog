@@ -2,6 +2,7 @@ package project.jlog.board.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,11 +24,14 @@ public class BoardController {
     private final UserService userService;
 
     /* 등록 컨트롤러 시작*/
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/posting")
     public String boardCreate(BoardRequestDTO boardRequestDTO){
         return "posting";
     }
     /* @Valid : notblank나 size 어노테이션을 적용시키기 위해 제약조건을 검사하는 것 */
+
+    @PreAuthorize("isAuthenticated()") // 이 어노테이션이 동작할 수 있게 스프링 시큐리티도 설정해야 함
     @PostMapping("/posting")
     public String boardCreate(@Valid BoardRequestDTO boardRequestDTO, BindingResult bindingResult, Principal principal){
         User user = userService.getUser(principal.getName());

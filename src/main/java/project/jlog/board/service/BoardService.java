@@ -7,6 +7,7 @@ import project.jlog.board.entity.Board;
 import project.jlog.board.repository.BoardRepository;
 import project.jlog.user.entity.User;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,21 @@ public class BoardService {
         }
     }
 
-    //수정
+    //삭제
+    public void delete(Board board){
+        this.boardRepository.delete(board);
+    }
+
+    //수정하기
+    public void edit(Board board, String subject, String content) {
+        Board updated = Board.builder()
+                .boardId(board.getBoardId())
+                .subject(subject)
+                .content(content)
+                .user(board.getUser())
+                .date(LocalDateTime.now())  // 수정 시간 업데이트
+                .build();
+        boardRepository.save(updated);  // ID 있으면 JPA update
+    }
 
 }

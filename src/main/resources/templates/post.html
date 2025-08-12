@@ -39,17 +39,18 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <span th:text="${board.content}"></span>
                     </div>
-<!--                    <div class="mt-4 d-flex justify-content-end">-->
-<!--                        <a class="btn btn-outline-primary me-2" th:href="@{|/board/edit/${board.id}|}">수정</a>-->
+                    <div class="mt-4 d-flex justify-content-end"
+                         th:if="${#authentication.name == board.user.userId}">
+                        <a class="btn btn-outline-primary me-2"
+                           th:href="@{|/board/edit/${board.boardId}|}">수정</a>
 
-<!--                        <form th:action="@{|/board/delete/${board.id}|}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">-->
-<!--                            <button type="submit" class="btn btn-outline-danger">삭제</button>-->
-<!--                        </form>-->
-<!--                    </div>-->
-                    <div class="mt-4 d-flex justify-content-end">
-                        <a class="btn btn-outline-primary me-2">수정</a>
-                        <button type="submit" class="btn btn-outline-danger">삭제</button>
+                        <form th:action="@{|/board/delete/${board.boardId}|}" method="post"
+                              onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button type="submit" class="btn btn-outline-danger">삭제</button>
+                        </form>
                     </div>
+
                 </div>
             </div>
         </article>

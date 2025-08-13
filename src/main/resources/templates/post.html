@@ -25,7 +25,9 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-heading">
                             <h1 th:text="${board.subject}"></h1>
-                            <span class="meta" th:text="${#temporals.format(board.date, 'yyyy-MM-dd HH:mm')}">
+                            <span class="meta">
+                              <span th:text="${#temporals.format(board.modifyDate != null ? board.modifyDate : board.date, 'yyyy-MM-dd HH:mm')}"></span>
+                              <span th:if="${board.modifyDate != null}"> (updated)</span>
                             </span>
                         </div>
                     </div>
@@ -37,7 +39,7 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        <span th:text="${board.content}"></span>
+                        <div class="post-content preserve-whitespace" th:utext="${@commonUtil.markdown(board.content)}"></div>
                     </div>
                     <div class="mt-4 d-flex justify-content-end"
                          th:if="${#authentication.name == board.user.userId}">

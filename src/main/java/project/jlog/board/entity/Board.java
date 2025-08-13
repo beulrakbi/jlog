@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import project.jlog.user.entity.User;
 
 import java.time.LocalDateTime;
@@ -29,13 +30,14 @@ public class Board {
     private String content;
 
     @CreationTimestamp //시간 자동 저장
-    @Column(name = "create_date")
+    @Column(name = "create_date", updatable = false)
     private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    @CreationTimestamp
     @Column(name = "modify_date")
     private LocalDateTime modifyDate; //수정 날짜 추가
 }

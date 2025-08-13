@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import project.jlog.board.entity.Board;
 import project.jlog.board.service.BoardService;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller

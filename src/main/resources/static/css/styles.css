@@ -91,6 +91,11 @@
   }
 }
 
+.preserve-whitespace {
+  white-space: pre-wrap;  /* 공백과 줄바꿈 유지 */
+  word-wrap: break-word;  /* 긴 단어 줄바꿈 */
+}
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -10795,4 +10800,13 @@ header.masthead .post-heading .meta a {
   .post-preview > a > .post-title {
     font-size: 2.25rem;
   }
+}
+
+.post-subtitle {
+  white-space: pre-wrap;   /* 줄바꿈 유지 */
+  overflow: hidden;        /* 넘치는 글 숨김 */
+  text-overflow: ellipsis; /* ... 표시 */
+  display: -webkit-box;
+  -webkit-line-clamp: 1;   /* 2줄까지만 보여주기 */
+  -webkit-box-orient: vertical;
 }

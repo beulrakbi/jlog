@@ -1,5 +1,7 @@
 package project.jlog.board.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,5 +17,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     @Query(value = "SELECT * FROM board ORDER BY RAND() LIMIT 10", nativeQuery = true)
     List<Board> findRandomBoards();
 
-    List<Board> findByUser_UserIdOrderByDateDesc(String userId); //마이홈에서 사용
+    Page<Board> findByUser_UserIdOrderByDateDesc(String userId, Pageable pageable); //마이홈에서 사용
+
 }

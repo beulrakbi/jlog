@@ -45,6 +45,14 @@
                                 <input class="form-control" th:field="*{subject}" id="subject" placeholder="제목">
                                 <label for="subject">제목</label>
                             </div>
+                            <div class="toolbar mb-2">
+                                <button type="button" class="btn btn-sm btn-secondary" onclick="wrapSelection('**')"><strong>B</strong></button>
+                                <button type="button" class="btn btn-sm btn-secondary" onclick="wrapSelection('_')"><em>I</em></button>
+                                <button type="button" class="btn btn-sm btn-secondary" onclick="prependSelection('> ')">인용</button>
+                                <button type="button" class="btn btn-sm btn-secondary" onclick="wrapSelection('`')">코드</button>
+                                <button type="button" class="btn btn-sm btn-secondary" onclick="insertLink()">링크</button>
+                            </div>
+
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" th:field="*{content}" id="content" placeholder="내용" style="height: 300px"></textarea>
                                 <label for="content">내용</label>

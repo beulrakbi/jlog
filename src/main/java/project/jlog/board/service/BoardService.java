@@ -28,7 +28,12 @@ public class BoardService {
 
     //게시글 조회
     public List<Board> getList(){
-        return this.boardRepository.findAll();
+        return this.boardRepository.findRandomBoards();
+    }
+
+    //마이홈 게시글 조회
+    public List<Board> getMyPost(String userId){
+        return this.boardRepository.findByUser_UserIdOrderByDateDesc(userId);
     }
 
     //게시글 상세페이지
@@ -53,7 +58,7 @@ public class BoardService {
                 .subject(subject)
                 .content(content)
                 .user(board.getUser())
-                .date(LocalDateTime.now())  // 수정 시간 업데이트
+                .modifyDate(LocalDateTime.now())  // 수정 시간 업데이트
                 .build();
         boardRepository.save(updated);  // ID 있으면 JPA update
     }

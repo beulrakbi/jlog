@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import project.jlog.board.dto.BoardRequestDTO;
 import project.jlog.board.entity.Board;
 import project.jlog.board.service.BoardService;
+import project.jlog.common.CommonUtil;
 import project.jlog.user.entity.User;
 import project.jlog.user.service.UserService;
 
@@ -24,6 +25,17 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
     private final UserService userService;
+    private final CommonUtil commonUtil;
+
+    //마이홈
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/myhome")
+    public String list(Model model, Principal principal){
+        List<Board> boardList = this.boardService.getMyPost(principal.getName());
+
+        model.addAttribute("boardList", boardList);
+        return "myhome";
+    }
 
     /* 등록 컨트롤러 시작*/
     @PreAuthorize("isAuthenticated()")
@@ -42,7 +54,7 @@ public class BoardController {
             return "posting";
         }
         this.boardService.boardCreate(boardRequestDTO.getSubject(), boardRequestDTO.getContent(), user);
-        return "redirect:/";
+        return "redirect:/board/myhome";
     }
     /* 등록 컨트롤러 종료 */
 

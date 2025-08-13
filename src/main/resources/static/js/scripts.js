@@ -27,3 +27,42 @@ window.addEventListener('DOMContentLoaded', () => {
         scrollPos = currentTop;
     });
 })
+
+function wrapSelection(wrapper) {
+    let textarea = document.getElementById('content');
+    let start = textarea.selectionStart;
+    let end = textarea.selectionEnd;
+    let selected = textarea.value.substring(start, end);
+    textarea.setRangeText(wrapper + selected + wrapper);
+}
+
+function prependSelection(prefix) {
+    let textarea = document.getElementById('content');
+    let start = textarea.selectionStart;
+    let end = textarea.selectionEnd;
+    let selected = textarea.value.substring(start, end);
+    textarea.setRangeText(prefix + selected);
+}
+
+// 링크 삽입
+function insertLink() {
+    const url = prompt("링크 URL을 입력하세요:");
+    const text = prompt("링크 텍스트를 입력하세요:");
+    if(!url || !text) return;
+
+    const textarea = document.getElementById('content');
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selected = textarea.value.substring(start, end);
+
+    const linkText = `[${text}](${url})`;
+
+    if(selected.length > 0){
+        // 선택 영역이 있으면 대체
+        textarea.setRangeText(linkText);
+    } else {
+        // 선택 영역 없으면 커서 위치에 삽입
+        textarea.setRangeText(linkText, start, start, "end");
+    }
+    textarea.focus();
+}

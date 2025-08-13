@@ -1,6 +1,9 @@
 package project.jlog.board.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import project.jlog.exception.DataNotFoundException;
 import project.jlog.board.entity.Board;
@@ -32,8 +35,9 @@ public class BoardService {
     }
 
     //마이홈 게시글 조회
-    public List<Board> getMyPost(String userId){
-        return this.boardRepository.findByUser_UserIdOrderByDateDesc(userId);
+    public Page<Board> getMyPost(String userId, int page, int size){
+        Pageable pageable = PageRequest.of(page, size); // 페이지 번호와 사이즈 설정
+        return this.boardRepository.findByUser_UserIdOrderByDateDesc(userId, pageable);
     }
 
     //게시글 상세페이지

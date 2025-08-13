@@ -28,6 +28,8 @@
                             <span class="meta">
                               <span th:text="${#temporals.format(board.modifyDate != null ? board.modifyDate : board.date, 'yyyy-MM-dd HH:mm')}"></span>
                               <span th:if="${board.modifyDate != null}"> (updated)</span>
+                                &nbsp;|&nbsp;
+                            <span class="post-meta" th:text="${board.user != null} ? ${board.user.userId} : '알 수 없는 사용자'"></span>
                             </span>
                         </div>
                     </div>

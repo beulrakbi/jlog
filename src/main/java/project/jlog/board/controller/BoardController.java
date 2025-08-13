@@ -2,6 +2,7 @@ package project.jlog.board.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -28,12 +29,18 @@ public class BoardController {
     private final CommonUtil commonUtil;
 
     //마이홈
-    @PreAuthorize("isAuthenticated()")
     @GetMapping("/myhome")
-    public String list(Model model, Principal principal){
-        List<Board> boardList = this.boardService.getMyPost(principal.getName());
+    @PreAuthorize("isAuthenticated()")
+    public String list(Model model, Principal principal,
+                       @RequestParam(defaultValue = "0") int page) {
 
-        model.addAttribute("boardList", boardList);
+        int size = 5; // 한 페이지 글 수
+        Page<Board> boardPage = boardService.getMyPost(principal.getName(), page, size);
+
+        model.addAttribute("boardList", boardPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", boardPage.getTotalPages());
+
         return "myhome";
     }
 

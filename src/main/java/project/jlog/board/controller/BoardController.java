@@ -13,6 +13,9 @@ import org.springframework.web.server.ResponseStatusException;
 import project.jlog.board.dto.BoardRequestDTO;
 import project.jlog.board.entity.Board;
 import project.jlog.board.service.BoardService;
+import project.jlog.comment.dto.CommentDTO;
+import project.jlog.comment.entity.Comment;
+import project.jlog.comment.service.CommentService;
 import project.jlog.common.CommonUtil;
 import project.jlog.user.entity.User;
 import project.jlog.user.service.UserService;
@@ -27,6 +30,7 @@ public class BoardController {
     private final BoardService boardService;
     private final UserService userService;
     private final CommonUtil commonUtil;
+    private final CommentService commentService;
 
     //마이홈
     @GetMapping("/myhome")
@@ -73,7 +77,10 @@ public class BoardController {
     @GetMapping("/post/{boardId}")
     public String boardDetail(Model model, @PathVariable Long boardId) {
         Board board = boardService.getBoard(boardId);
+        List<Comment> comments = commentService.getCommentsByBoard(boardId);
         model.addAttribute("board", board);
+        model.addAttribute("commentList", comments);
+        model.addAttribute("commentDTO", new CommentDTO());
         return "post";
     }
     /* 상세페이지 종료 */

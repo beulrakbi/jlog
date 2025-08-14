@@ -10810,3 +10810,33 @@ header.masthead .post-heading .meta a {
   -webkit-line-clamp: 1;   /* 2줄까지만 보여주기 */
   -webkit-box-orient: vertical;
 }
+
+/* 댓글 입력창 - Clean Blog 스타일에 맞춰 그림자/라운드 최소화 */
+.comment-textarea {
+  border-radius: 0;
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+}
+
+/* 댓글 리스트 아이템 */
+.comment-item {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* 버튼 크기 조정 - Clean Blog 버튼 스타일 */
+.btn-sm {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+}
+
+/* 댓글 제목 */
+h5 {
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: -0.2px;
+}

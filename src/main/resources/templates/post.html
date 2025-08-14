@@ -43,7 +43,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-content preserve-whitespace" th:utext="${@commonUtil.markdown(board.content)}"></div>
                     </div>
-                    <div class="mt-4 d-flex justify-content-end"
+                    <div class="col-md-10 col-lg-8 col-xl-7 mt-4 d-flex justify-content-end"
                          th:if="${#authentication.name == board.user.userId}">
                         <a class="btn btn-outline-primary me-2"
                            th:href="@{|/board/edit/${board.boardId}|}">수정</a>
@@ -58,6 +58,35 @@
                 </div>
             </div>
         </article>
+        <!-- Comments Section -->
+        <section class="mb-5">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+
+                        <!-- Comment form -->
+                        <h5 class="mb-3 text-secondary fw-light">댓글 남기기</h5>
+                        <form class="mb-4" th:action="@{/comment/create/{boardId}(boardId=${board.boardId})}"
+                              th:object="${commentDTO}" method="post">
+                    <textarea class="form-control comment-textarea" rows="3"
+                              placeholder="내용을 입력하세요" th:field="*{commentContent}"></textarea>
+                            <button type="submit" class="btn btn-primary btn-sm mt-2">등록</button>
+                        </form>
+
+                        <!-- Existing comments -->
+                        <div th:if="${#lists.isEmpty(commentList)}" class="text-muted">아직 댓글이 없습니다.</div>
+                        <div th:each="comment : ${commentList}" class="comment-item mb-3">
+                            <div class="fw-bold">
+                                <span th:text="${comment.user.userId}">작성자</span>
+                                <small class="text-muted" th:text="${#temporals.format(comment.createDate, 'yyyy-MM-dd')}"></small>
+                            </div>
+                            <div th:text="${comment.commentContent}">댓글 내용</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Footer-->
         <div th:replace="fragments/footer :: footer"></div>
         <!-- Bootstrap core JS-->

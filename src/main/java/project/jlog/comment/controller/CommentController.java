@@ -2,14 +2,13 @@ package project.jlog.comment.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import project.jlog.board.entity.Board;
 import project.jlog.board.service.BoardService;
 import project.jlog.comment.dto.CommentDTO;
@@ -48,6 +47,20 @@ public class CommentController {
         }
         this.commentService.createComment(commentDTO.getCommentContent(), user, board);
         return "redirect:/board/post/" + boardId;
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @DeleteMapping("/delete/{commentId}")
+    public String commentDelete(Principal principal, @PathVariable("commentId") Long commentId){
+        Comment comment = this.commentService.getComment(commentId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "댓글이 존재하지 않습니다."
+                ));
+        if (!comment.getUser().getUserId().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");
+        }
+        this.commentService.delete(comment);
+        return "redirect:/board/post/" + comment.getBoard().getBoardId();
     }
 
 }

@@ -28,4 +28,12 @@ public class CommentService {
     public List<Comment> getCommentsByBoard(Long boardId) {
         return commentRepository.findAllByBoard_BoardIdOrderByCreateDateAsc(boardId);
     }
+
+    public void delete(Comment comment){
+        this.commentRepository.delete(comment);
+    }
+
+    public Optional<Comment> getComment(Long commentId){
+        return commentRepository.findById(commentId);
+    }
 }

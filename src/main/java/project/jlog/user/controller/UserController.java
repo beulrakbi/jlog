@@ -52,4 +52,9 @@ public class UserController {
     public String login(){
         return "/login_form";
     }
+
+    @GetMapping("/newpwd")
+    public String getNewPwd(){
+        return "/email/new_pwd";
+    }
 }

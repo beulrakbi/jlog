@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update  # create / update / validate / none
+      ddl-auto: validate  # create / update / validate / none
     show-sql: true
     properties:
       hibernate:
@@ -16,6 +16,23 @@ spring:
 
   thymeleaf:
     cache: false  # ?? ??? false? ???
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: beomgolaeda@gmail.com       # 실제 발송할 Gmail 계정
+    password: plgyduefwsahcdbk    # Gmail 앱 비밀번호 (2FA 사용 시 필요)
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true                  # SMTP 인증 사용
+          starttls:
+            enable: true             # TLS 사용
+            required: true           # TLS 필수
+          connectiontimeout: 5000     # 연결 타임아웃(ms)
+          timeout: 5000               # 읽기 타임아웃(ms)
+          writetimeout: 5000          # 쓰기 타임아웃(ms)
 
 server:
   port: 8080

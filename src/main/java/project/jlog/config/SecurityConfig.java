@@ -29,6 +29,8 @@ public class SecurityConfig {
                         .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)) //로그아웃 시 세션 종료
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/email/send"));
         ;
         return http.build();
     }
@@ -43,4 +45,5 @@ public class SecurityConfig {
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+
 }

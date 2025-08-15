@@ -10840,3 +10840,10 @@ h5 {
   font-size: 1.1rem;
   letter-spacing: -0.2px;
 }
+
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  margin: 0 8px;
+}

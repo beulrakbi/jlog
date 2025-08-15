@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Clean Blog - 비밀번호 변경</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- Navigation-->
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('/assets/img/muhammad-zaqy-al-fattah-Lexcm-6FHRU-unsplash.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>비밀번호 변경</h1>
+                    <span class="subheading">새로운 비밀번호를 입력해주세요.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <form method="post" th:action="@{/user/new_pwd}">
+                    <div class="form-floating mb-3">
+                        <input name="pwd1" class="form-control" type="password" placeholder="비밀번호" required />
+                        <label for="pwd1">비밀번호</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input name="pwd2" class="form-control" type="password" placeholder="비밀번호 확인" required />
+                        <label for="pwd2">비밀번호 확인</label>
+                    </div>
+
+                    <div th:if="${param.error}">
+                        <div class="alert alert-danger">
+                            비밀번호가 일치하지 않습니다.
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary text-uppercase" type="submit">비밀번호 변경</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer-->
+<div th:replace="fragments/footer :: footer"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

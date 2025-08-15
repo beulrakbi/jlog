@@ -39,7 +39,7 @@ public class EmailService {
 
             userRepository.save(updatedUser);
 
-            sendEmail(email, tempPassword);
+            sendEmail(email, user.getUserId(), tempPassword);
 
             return true; // 성공
         } catch (Exception e) {
@@ -60,13 +60,14 @@ public class EmailService {
     }
 
     // HTML 메일 발송
-    private void sendEmail(String to, String tempPassword) {
+    private void sendEmail(String to, String userId, String tempPassword) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
             helper.setTo(to);
             helper.setSubject("임시 비밀번호 안내");
             helper.setText(
+                    "<h3>아이디: " + userId + "</h3>" +
                     "<h3>임시 비밀번호: " + tempPassword + "</h3>" +
                             "<p>로그인 후 반드시 비밀번호를 변경해주세요.</p>",
                     true

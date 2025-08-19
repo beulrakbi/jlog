@@ -38,7 +38,7 @@ public class PasswordController {
     // 2. 비밀번호 설정 페이지
     @GetMapping("/new_pwd")
     public String newPwd(){
-        return "/update_pwd";
+        return "update_pwd";
     }
 
     @PreAuthorize("isAuthenticated()")

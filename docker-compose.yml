@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Ro9wkd27!
+      MYSQL_DATABASE: jlogdb
+      MYSQL_USER: jlog
+      MYSQL_PASSWORD: Ro9wkd27!
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - jlog-network
+
+  springboot:
+    build: .
+    container_name: jlog-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/jlogdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+      SPRING_DATASOURCE_USERNAME: jlog
+      SPRING_DATASOURCE_PASSWORD: Ro9wkd27!
+    networks:
+      - jlog-network
+
+volumes:
+  mysql_data:
+
+networks:
+  jlog-network:

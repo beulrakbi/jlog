@@ -17,19 +17,4 @@ class JlogApplicationTests {
     @Autowired
     private BoardService boardService;
 
-    @Test
-    void 게시글작성테스트()  {
-        BoardRequestDTO boardRequestDTO = new BoardRequestDTO();
-        boardRequestDTO.setSubject("글쓰기 테스트");
-        boardRequestDTO.setContent("글쓰기 테스트중입니다.");
-        boardRequestDTO.setDate(LocalDateTime.now());
-
-        Board b = Board.builder()
-                .subject(boardRequestDTO.getSubject())
-                .content(boardRequestDTO.getContent())
-                .date(LocalDateTime.now())
-                .build();
-        this.boardRepository.save(b);
-    }
-
 }

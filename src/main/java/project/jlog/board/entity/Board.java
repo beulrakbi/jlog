@@ -37,7 +37,6 @@ public class Board {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @CreationTimestamp
     @Column(name = "modify_date")
     private LocalDateTime modifyDate; //수정 날짜 추가
 }

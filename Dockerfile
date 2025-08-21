@@ -4,6 +4,8 @@ FROM openjdk:17-jdk-slim
 # 2. 컨테이너 안에서 작업할 디렉토리 지정
 WORKDIR /app
 
+ENV TZ=Asia/Seoul
+
 # 3. 빌드된 jar 파일을 컨테이너 안으로 복사
 COPY build/libs/Jlog-0.0.1-SNAPSHOT.jar app.jar
 #   (Maven이라면 target/myapp-0.0.1-SNAPSHOT.jar)

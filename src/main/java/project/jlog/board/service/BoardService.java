@@ -56,15 +56,20 @@ public class BoardService {
     }
 
     //수정하기
+//    public void edit(Board board, String subject, String content) {
+//        Board updated = Board.builder()
+//                .boardId(board.getBoardId())
+//                .subject(subject)
+//                .content(content)
+//                .user(board.getUser())
+//                .modifyDate(LocalDateTime.now())  // 수정 시간 업데이트
+//                .build();
+//        boardRepository.save(updated);  // ID 있으면 JPA update
+//    }
     public void edit(Board board, String subject, String content) {
-        Board updated = Board.builder()
-                .boardId(board.getBoardId())
-                .subject(subject)
-                .content(content)
-                .user(board.getUser())
-                .modifyDate(LocalDateTime.now())  // 수정 시간 업데이트
-                .build();
-        boardRepository.save(updated);  // ID 있으면 JPA update
+        board.update(subject, content);
+
+        boardRepository.save(board);
     }
 
 }

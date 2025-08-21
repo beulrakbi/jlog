@@ -40,4 +40,10 @@ public class Board {
     @UpdateTimestamp
     @Column(name = "modify_date")
     private LocalDateTime modifyDate; //수정 날짜 추가
+
+    public void update(String subject, String content) {
+        this.subject = subject;
+        this.content = content;
+        // modifyDate는 @UpdateTimestamp가 자동으로 처리하므로 직접 할당하지 않습니다.
+    }
 }

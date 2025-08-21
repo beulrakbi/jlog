@@ -14,6 +14,11 @@ services:
       - mysql_data:/var/lib/mysql
     networks:
       - jlog-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "jlog", "-pRo9wkd27!" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   springboot:
     build: .
@@ -21,7 +26,8 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - mysql
+      mysql:
+          condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/jlogdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
       SPRING_DATASOURCE_USERNAME: jlog

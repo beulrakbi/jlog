@@ -4,6 +4,10 @@ FROM openjdk:17-jdk-slim
 # 2. 컨테이너 안에서 작업할 디렉토리 지정
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y tzdata
+# 한국 시간대로 심볼릭 링크 생성
+RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+# 한국 시간대로 환경 변수 설정
 ENV TZ=Asia/Seoul
 
 # 3. 빌드된 jar 파일을 컨테이너 안으로 복사

@@ -55,7 +55,7 @@
 
 # 6. 주요 기능 구현 @황재용  
 ## 결과물 영상  
-[🎥유튜브 https://studio.youtube.com/video/sPFcLeRC0T0/edit](https://studio.youtube.com/video/sPFcLeRC0T0/edit)  
+[🎥유튜브 https://www.youtube.com/watch?v=sPFcLeRC0T0]  (https://studio.youtube.com/video/sPFcLeRC0T0/edit)  
 [💬벨로그](https://velog.io/@iamjyh/jlog-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B0%B0%ED%8F%AC-%EB%8F%84%EC%A0%84%EA%B8%B01)  
 
 # 7. 회고  
